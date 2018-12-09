@@ -65,6 +65,10 @@ if OPENTHREAD_EXAMPLES_EFR32
 include $(top_srcdir)/examples/platforms/efr32/Makefile.platform.am
 endif
 
+if OPENTHREAD_EXAMPLES_WHITEFIELD
+include $(top_srcdir)/examples/platforms/whitefield/Makefile.platform.am
+endif
+
 if OPENTHREAD_EXAMPLES_EMSK
 include $(top_srcdir)/examples/platforms/emsk/Makefile.platform.am
 endif

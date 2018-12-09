@@ -1567,12 +1567,12 @@ AC_DEFINE_UNQUOTED([OPENTHREAD_ENABLE_ECDSA], [${OPENTHREAD_ENABLE_ECDSA}], [Def
 
 AC_ARG_WITH(examples,
     [AS_HELP_STRING([--with-examples=TARGET],
-        [Specify the examples from one of: none, posix, cc1352, cc2538, cc2650, cc2652, da15000, efr32, emsk, gp712, kw41z, nrf52840, samr21 @<:@default=none@:>@.])],
+        [Specify the examples from one of: none, posix, cc1352, cc2538, cc2650, cc2652, da15000, whitefield, efr32, emsk, gp712, kw41z, nrf52840, samr21 @<:@default=none@:>@.])],
     [
         case "${with_examples}" in
         none)
             ;;
-        posix|cc1352|cc2538|cc2650|cc2652|da15000|efr32|emsk|gp712|kw41z|nrf52840|samr21)
+        posix|cc1352|cc2538|cc2650|cc2652|da15000|whitefield|efr32|emsk|gp712|kw41z|nrf52840|samr21)
             if test ${enable_posix_app} = "yes"; then
                 AC_MSG_ERROR([--with-examples must be none when POSIX apps are enabled by --enable-posix-app])
             fi
@@ -1621,6 +1621,11 @@ case ${with_examples} in
     efr32)
         OPENTHREAD_EXAMPLES_EFR32=1
         AC_DEFINE_UNQUOTED([OPENTHREAD_EXAMPLES_EFR32],[${OPENTHREAD_EXAMPLES_EFR32}],[Define to 1 if you want to use efr32 examples])
+        ;;
+
+    whitefield)
+        OPENTHREAD_EXAMPLES_WHITEFIELD=1
+        AC_DEFINE_UNQUOTED([OPENTHREAD_EXAMPLES_WHITEFIELD],[${OPENTHREAD_EXAMPLES_WHITEFIELD}],[Define to 1 if you want to use whitefield examples])
         ;;
 
      emsk)
@@ -1674,6 +1679,9 @@ AM_CONDITIONAL([OPENTHREAD_EXAMPLES_CC2652], [test "${with_examples}" = "cc2652"
 
 AC_SUBST(OPENTHREAD_EXAMPLES_DA15000)
 AM_CONDITIONAL([OPENTHREAD_EXAMPLES_DA15000], [test "${with_examples}" = "da15000"])
+
+AC_SUBST(OPENTHREAD_EXAMPLES_WHITEFIELD)
+AM_CONDITIONAL([OPENTHREAD_EXAMPLES_WHITEFIELD], [test "${with_examples}" = "whitefield"])
 
 AC_SUBST(OPENTHREAD_EXAMPLES_EFR32)
 AM_CONDITIONAL([OPENTHREAD_EXAMPLES_EFR32], [test "${with_examples}" = "efr32"])
@@ -1840,6 +1848,7 @@ examples/platforms/cc2538/Makefile
 examples/platforms/cc2650/Makefile
 examples/platforms/cc2652/Makefile
 examples/platforms/da15000/Makefile
+examples/platforms/whitefield/Makefile
 examples/platforms/efr32/Makefile
 examples/platforms/emsk/Makefile
 examples/platforms/gp712/Makefile
